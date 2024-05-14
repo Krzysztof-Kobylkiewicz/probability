@@ -1,15 +1,11 @@
 package com.tournament.probability.team;
 
+import com.tournament.probability.ranking.Ranking;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Size;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
 import com.tournament.probability.match.Match;
 import java.util.List;
 
-@AllArgsConstructor
-@NoArgsConstructor
 @Entity
 @Table(name = "team")
 public class Team {
@@ -35,9 +31,12 @@ public class Team {
     //@JoinColumn(name = "host_id", referencedColumnName = "team_id")//nullable = false)
     private List<Match> matches;
 
-    @OneToMany(mappedBy = "hostId")
+    @OneToMany(mappedBy = "awayId")
     //@JoinColumn(name = "away_id", referencedColumnName = "team_id")//, nullable = false)
     private List<Match> matches1;
+
+    @OneToMany(mappedBy = "teamId")
+    private List<Ranking> rankings;
 
     Team(String name, String owner, String email, List<Match> matches, List<Match> matches1) {
         this.name = name;
@@ -57,6 +56,20 @@ public class Team {
         this.owner = owner;
         this.email = email;
 //        this.matches = matches;
+    }
+    Team(String name, String owner, String email, List<Match> matches, List<Match> matches1, List<Ranking> rankings) {
+        this.name = name;
+        this.owner = owner;
+    }
+    Team(String name, String owner, List<Ranking> rankings) {
+        this.name = name;
+    }
+    Team(){
+
+    }
+
+    public Team(int id) {
+        this.id = id;
     }
 
     public int getId() {
@@ -91,13 +104,11 @@ public class Team {
         this.email = email;
     }
 
-//    public void setMatches(List<Match> matches) {
-//        this.matches = matches;
-//    }
-//
-//    public void setMatches1(List<Match> matches1) {
-//        this.matches1 = matches1;
-//    }
+    public List<Ranking> getRankings() {
+        return rankings;}
+
+    public void setRankings(List<Ranking> rankings) {
+        this.rankings = rankings;}
 
     @Override
     public String toString() {
@@ -106,15 +117,6 @@ public class Team {
                 ", name='" + name + '\'' +
                 ", owner='" + owner + '\'' +
                 ", email='" + email + '\'' +
-//                ", matches=" + matches +
-//                ", matches1=" + matches1 +
                 '}';
     }
 }
-/* JSON
-{
-    "name" : "sfsffds",
-    "owner" : "fsdfds",
-    "email" : "fsfdfs"
-}
- */

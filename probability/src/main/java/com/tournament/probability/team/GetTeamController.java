@@ -29,6 +29,6 @@ class GetTeamController {
     @GetMapping(path = "/get/{name}")
     public ResponseEntity<Team> getTeamByName(@PathVariable("name") String name){
         Team gTeam = getTeam.getTeamByName(name);
-        return new ResponseEntity<>(gTeam, HttpStatus.CREATED);
+        return new ResponseEntity<>(gTeam, HttpStatus.OK);
     }
 }

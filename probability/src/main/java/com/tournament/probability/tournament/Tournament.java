@@ -1,7 +1,6 @@
 package com.tournament.probability.tournament;
 
 import com.tournament.probability.match.Match;
-import com.tournament.probability.tournamentProperties.TournamentProperties;
 import com.tournament.probability.tournamentType.TournamentType;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Min;
@@ -41,10 +40,6 @@ public class Tournament {
     @Column(name = "winner")
     private String winner;
 
-    @OneToMany(targetEntity = TournamentProperties.class, cascade = CascadeType.ALL)
-    @JoinColumn(name = "tournament_id", referencedColumnName = "tournament_id", nullable = false)
-    private List<TournamentProperties> tournamentPropertiesList1;
-
 //    @OneToMany(targetEntity = Match.class, cascade = CascadeType.ALL)
 //    @JoinColumn(name = "tournament_id", referencedColumnName = "tournament_id", nullable = false)
 //    List<Match> matches;
@@ -58,10 +53,4 @@ public class Tournament {
         this.endDate = endDate;
         this.winner = winner;
     }
-//    @Autowired
-//    Tournament(TournamentType tournamentType){
-//        this.tournamentType = tournamentType;
-//    }
-//    @Transient
-//    private TournamentType tournamentType;
 }
