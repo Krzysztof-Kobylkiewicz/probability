@@ -1,20 +1,29 @@
 package com.tournament.probability.match;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.context.config.ConfigDataResourceNotFoundException;
-import org.springframework.data.crossstore.ChangeSetPersister;
+import org.springframework.data.annotation.AccessType;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
-public class UpdateMatch {
-    private final MatchRepository matchRepository;
+public class MatchService {
     @Autowired
-    UpdateMatch (MatchRepository matchRepository){
+    private final MatchRepository matchRepository;
+
+    MatchService(MatchRepository matchRepository){
         this.matchRepository = matchRepository;
     }
-    Match updateMatchMethod(int id, Match match){
+    Match addMatchMethod(Match match){
+        matchRepository.save(match);
+        return match;
+    }
+    Optional<Match> getMatchById(int id){
+        return matchRepository.findById(id);
+    }
+    Match updateMatch(int id, Match match){
         Match updatedMatch = matchRepository.findById(id)
-                .orElseThrow(() -> new IllegalStateException("Employee with id " + id + " does not exist."));
+                .orElseThrow(() -> new IllegalStateException("Match with id '" + id + "' does not exist."));
 
         updatedMatch.setHostId(match.getHostId());
         updatedMatch.setHostTeamGoals(match.getHostTeamGoals());
