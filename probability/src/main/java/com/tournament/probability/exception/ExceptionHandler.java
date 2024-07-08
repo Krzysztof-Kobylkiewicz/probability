@@ -12,8 +12,7 @@ public class ExceptionHandler {
 
     @org.springframework.web.bind.annotation.ExceptionHandler(value = {ApiRequestException.class})
     public ResponseEntity<Object> handleApiRequestException(ApiRequestException e){
-        // If the ApiRequestException is caught, then:
-        // 1. Create payload containing exception details
+
         HttpStatus notFound = HttpStatus.NOT_FOUND;
 
         TournamentTypeNotFoundException tournamentTypeNotFoundException =
@@ -22,7 +21,6 @@ public class ExceptionHandler {
                 notFound,
                 ZonedDateTime.now(ZoneId.systemDefault())
         );
-        // 2. Retuern response entity
         return new ResponseEntity<>(tournamentTypeNotFoundException, notFound);
     }
 }

@@ -2,16 +2,12 @@ package com.tournament.probability.tournamentType;
 
 import com.tournament.probability.tournament.Tournament;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.Size;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
 
 @NoArgsConstructor
-//@AllArgsConstructor
 @Entity
 @Table(name = "tournament_type")
 @Component
@@ -25,19 +21,16 @@ public class TournamentType {
     @Column(name = "tournament_type_id")
     private int id;
     @Column(name = "type")
-    private char tournamentType;
+    private Character tournamentType;
     @Column(name = "description")
     private String tournamentTypeDescription;
     @Column(name = "min_teams")
     private int minTeams;
     @Column(name = "max_teams")
     private int maxTeams;
-
-    @OneToMany(targetEntity = Tournament.class,cascade = CascadeType.ALL)
-    @JoinColumn(name = "type", referencedColumnName = "type", nullable = false)
+    @OneToMany(mappedBy = "tournamentTypeId")
     private List<Tournament> tournaments;
     //Constructors
-
     public TournamentType(int id, char tournamentType, String tournamentTypeDescription, int minTeams, int maxTeams) {
         this.id = id;
         this.tournamentType = tournamentType;
@@ -53,7 +46,9 @@ public class TournamentType {
         this.maxTeams = maxTeams;
     }
 
-    //toString()
+    public TournamentType(int id) {
+        this.id = id;
+    }
 
     @Override
     public String toString() {
@@ -65,8 +60,6 @@ public class TournamentType {
                 ", maxTeams=" + maxTeams +
                 '}';
     }
-
-    //Setters
 
     public void setTournamentType(char tournamentType) {
         this.tournamentType = tournamentType;
@@ -80,8 +73,6 @@ public class TournamentType {
     public void setMaxTeams(int maxTeams) {
         this.maxTeams = maxTeams;
     }
-
-    //Getters
 
     public int getId() {
         return id;
@@ -99,11 +90,3 @@ public class TournamentType {
         return maxTeams;
     }
 }
-/* JSON
-{
-        "tournamentType" : "L",
-        "tournamentTypeDescription" : "dfdfsgdg",
-        "minTeams" : 16,
-        "maxTeams" : 24
-}
-*/

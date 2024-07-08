@@ -12,6 +12,9 @@ interface TournamentTypeRepository extends JpaRepository<TournamentType, Integer
     @Query("SELECT tt FROM TournamentType tt WHERE tt.id =?1")
     Optional<TournamentType> findTournamentTypeById(int id);
 
+    @Query("SELECT dd FROM TournamentType dd WHERE dd.tournamentType =?1")
+    Optional<TournamentType> findByType(Character type);
+
     void deleteTournamentTypeById(int id);
 
 //    TournamentType updateTournamentTypeById(char tournamentType, String ttDescription,

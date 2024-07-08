@@ -1,7 +1,6 @@
 package com.tournament.probability.match;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.annotation.AccessType;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -19,6 +18,7 @@ public class MatchService {
         return match;
     }
     Optional<Match> getMatchById(int id){
+
         return matchRepository.findById(id);
     }
     Match updateMatch(int id, Match match){

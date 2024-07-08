@@ -22,7 +22,7 @@ public class MatchController {
         return new ResponseEntity<>(createdMatch, HttpStatus.CREATED);
     }
     @GetMapping(path = "/get/{id}")
-    public ResponseEntity<Optional<Match>> getMatchByIdMethod(@RequestParam int id){
+    public ResponseEntity<Optional<Match>> getMatchByIdMethod(@PathVariable int id){
         Optional<Match> optionalMatch = matchService.getMatchById(id);
         return new ResponseEntity<>(optionalMatch, HttpStatus.OK);
     }

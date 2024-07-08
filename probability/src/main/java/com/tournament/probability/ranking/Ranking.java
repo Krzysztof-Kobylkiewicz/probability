@@ -1,10 +1,13 @@
 package com.tournament.probability.ranking;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.tournament.probability.team.Team;
 import jakarta.annotation.Nullable;
 import jakarta.persistence.*;
 
-@Entity(name = "ranking")
+import java.sql.Date;
+
+@Entity
 @Table
 public class Ranking {
     @Id
@@ -15,75 +18,121 @@ public class Ranking {
     @ManyToOne(cascade = CascadeType.MERGE)
     private Team teamId;
 
-    private float averageAge;
+    private Float averageAge;
 
     @Nullable
-    private float teamValue;
+    private Float teamValue;
 
-    private int numberOfPlayers;
+    private Integer numberOfPlayers;
 
     private String confederation;
 
-    private int points;
+    private Integer points;
 
-    private int position;
+    private Integer position;
 
-    public Ranking (float averageAge, float teamValue, int numberOfPlayers, String confederation, int points, int position){
+    @JsonFormat(pattern = "yyyy-MM-dd")
+    private Date rankingDate;
+
+    public Ranking (Float averageAge, Float teamValue, Integer numberOfPlayers, String confederation,
+                    Integer points, Integer position, Date rankingDate){
         this.averageAge = averageAge;
         this.teamValue = teamValue;
         this.numberOfPlayers = numberOfPlayers;
         this.confederation = confederation;
         this.points = points;
         this.position = position;
+        this.rankingDate = rankingDate;
     }
 
-    long getId(){
-        return id;}
+    public Ranking(String confederation, Integer points, Integer position) {
+        this.confederation = confederation;
+        this.points = points;
+        this.position = position;
+    }
 
-    Team getTeamId(){
-        return teamId;}
+    public Ranking(){
 
-    float getAverageAge(){
-        return averageAge;}
+    }
 
-    float getTeamValue(){
-        return teamValue;}
-
-    String getConfederation(){
-        return confederation;}
-
-    int getPoints(){
-        return points;}
-
-    int getPosition(){
-        return position;}
+    public long getId() {
+        return id;
+    }
 
     public void setId(long id) {
-        this.id = id;}
+        this.id = id;
+    }
+
+    public Team getTeamId() {
+        return teamId;
+    }
 
     public void setTeamId(Team teamId) {
-        this.teamId = teamId;}
+        this.teamId = teamId;
+    }
 
-    void setAverageAge(float averageAge){
-        this.averageAge = averageAge;}
+    public Float getAverageAge() {
+        return averageAge;
+    }
 
-    public void setTeamValue(float teamValue) {
-        this.teamValue = teamValue;}
+    public void setAverageAge(Float averageAge) {
+        this.averageAge = averageAge;
+    }
+
+    @Nullable
+    public Float getTeamValue() {
+        return teamValue;
+    }
+
+    public void setTeamValue(@Nullable Float teamValue) {
+        this.teamValue = teamValue;
+    }
+
+    public Integer getNumberOfPlayers() {
+        return numberOfPlayers;
+    }
+
+    public void setNumberOfPlayers(Integer numberOfPlayers) {
+        this.numberOfPlayers = numberOfPlayers;
+    }
+
+    public String getConfederation() {
+        return confederation;
+    }
 
     public void setConfederation(String confederation) {
-        this.confederation = confederation;}
+        String CONFEDERATION = confederation.toUpperCase();
+        if (CONFEDERATION.equals("UEFA") || CONFEDERATION.equals("CONMEBOL") || CONFEDERATION.equals("CONCACAF") ||
+        CONFEDERATION.equals("CAF") || CONFEDERATION.equals("AFC") || CONFEDERATION.equals("OFC")){
+            this.confederation = confederation;
+        } else {
+            throw new IllegalArgumentException(confederation + " is not a valid confederation.");
+        }
+    }
 
-    public void setPoints(int points) {
-        this.points = points;}
+    public Integer getPoints() {
+        return points;
+    }
 
-    public void setPosition(int position) {
-        this.position = position;}
+    public void setPoints(Integer points) {
+        this.points = points;
+    }
 
-    public int getNumberOfPlayers() {
-        return numberOfPlayers;}
+    public Integer getPosition() {
+        return position;
+    }
 
-    public void setNumberOfPlayers(int numberOfPlayers) {
-        this.numberOfPlayers = numberOfPlayers;}
+    public void setPosition(Integer position) {
+        this.position = position;
+    }
+
+    public Date getRankingDate() {
+        return rankingDate;
+    }
+
+    public void setRankingDate(Date rankingDate) {
+        this.rankingDate = rankingDate;
+    }
 
     @Override
     public String toString() {
@@ -96,6 +145,7 @@ public class Ranking {
                 ", confederation='" + confederation + '\'' +
                 ", points=" + points +
                 ", position=" + position +
+                ", rankingDate=" + rankingDate +
                 '}';
     }
 }

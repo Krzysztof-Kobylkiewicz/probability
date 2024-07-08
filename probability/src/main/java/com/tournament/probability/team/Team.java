@@ -64,8 +64,7 @@ public class Team {
     Team(String name, String owner, List<Ranking> rankings) {
         this.name = name;
     }
-    Team(){
-
+    public Team(){
     }
 
     public Team(int id) {

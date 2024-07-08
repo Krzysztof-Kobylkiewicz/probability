@@ -2,16 +2,16 @@ package com.tournament.probability.ranking;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import java.util.Optional;
 
 @Service
-public class AddRanking {
-    private final RankingRepository rankingRepository;
+public class RankingService {
     @Autowired
-    AddRanking(RankingRepository rankingRepository){
+    private final RankingRepository rankingRepository;
+    RankingService(RankingRepository rankingRepository){
         this.rankingRepository = rankingRepository;
     }
-    Ranking postRankingMethod(Ranking ranking){
-        rankingRepository.save(ranking);
-        return ranking;
+    Ranking addRanking(Ranking ranking){
+        return rankingRepository.save(ranking);
     }
 }

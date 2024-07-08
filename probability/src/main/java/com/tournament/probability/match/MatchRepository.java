@@ -5,8 +5,9 @@ import org.springframework.data.jpa.repository.Query;
 
 import java.util.Optional;
 
-interface MatchRepository extends JpaRepository<Match, Integer> {
+public interface MatchRepository extends JpaRepository<Match, Long> {
 
-    @Query("SELECT m FROM Team m WHERE m.name = ?1")
-    Optional<Match> findMatchByTeamName (String name);
+    @Query("SELECT m FROM Match m WHERE m.id = ?1")
+    Optional<Match> findById (int id);
+
 }

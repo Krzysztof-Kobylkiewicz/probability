@@ -7,12 +7,14 @@ import org.springframework.stereotype.Repository;
 import java.util.Optional;
 
 @Repository
-interface TeamRepository extends JpaRepository<Team, Integer> {
-//    @Query(nativeQuery = true, value = "SELECT * FROM team WHERE team_name =?1")
+public interface TeamRepository extends JpaRepository<Team, Integer> {
     @Query("SELECT t FROM Team t WHERE t.name = ?1")
     Optional<Team> findTeamByName(String team_name);
 
     void deleteTeamById(int id);
+
+    @Query("SELECT t FROM Team t WHERE t.id = ?1")
+    Optional<Team> findTeamById(long id);
 
     Team getTeamByName(String name);
 }
