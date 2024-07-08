@@ -10,7 +10,10 @@ import weka.classifiers.Evaluation;
 import weka.classifiers.functions.Logistic;
 import weka.core.Attribute;
 import weka.core.Instances;
+
+import java.time.format.DateTimeFormatter;
 import java.util.Comparator;
+import java.time.LocalDateTime;
 
 
 import java.util.*;
@@ -26,12 +29,22 @@ public class SimulateTournament {
     @Autowired
     private final FindDataToSimulation findDataToSimulation;
 
+    @Autowired
+    private final CalculateProbabilityOfWin calculateProbabilityOfWin;
+
+    @Autowired
+    private final SimulationRepository simulationRepository;
+
     public SimulateTournament(RegressionRepository regressionRepository,
                               LogisticRegressionModel logisticRegressionModel,
-                              FindDataToSimulation findDataToSimulation) {
+                              FindDataToSimulation findDataToSimulation,
+                              CalculateProbabilityOfWin calculateProbabilityOfWin,
+                              SimulationRepository simulationRepository) {
         this.regressionRepository = regressionRepository;
         this.logisticRegressionModel = logisticRegressionModel;
         this.findDataToSimulation = findDataToSimulation;
+        this.calculateProbabilityOfWin = calculateProbabilityOfWin;
+        this.simulationRepository = simulationRepository;
     }
 
     private final static double rand = 0.005;
@@ -579,23 +592,23 @@ public class SimulateTournament {
             winners.add(winner);
         }
 
-        Map<String, Integer> occurrences = new HashMap<>();
+        LocalDateTime now = LocalDateTime.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        String formattedDateOfSavingSimulation = now.format(formatter);
 
-        for (String w : winners){
-            occurrences.put(w, occurrences.getOrDefault(w, 0) + 1);
-        }
+        Map<String, Double> probabilities = calculateProbabilityOfWin.
+                                            calculateProbabilityOfWin(winners, numSimulations);
 
-        Map<String, Double> probabilities = new HashMap<>();
-
-        for (Map.Entry<String, Integer> entry : occurrences.entrySet()) {
-            String w = entry.getKey();
-            int count = entry.getValue();
-            double probability = (double) count / numSimulations;
-            probabilities.put(w, probability);
-        }
-        System.out.println("\n");
         for (Map.Entry<String, Double> entry : probabilities.entrySet()) {
-            System.out.println("Winner: " + entry.getKey() + ", probability: " + entry.getValue() + ".\n");
+
+            String w = entry.getKey();
+            double probability = entry.getValue();
+
+            Team team = simulationRepository.findTeamByTeamName(w);
+
+            SimulationResult resultOfSimulation = new SimulationResult(formattedDateOfSavingSimulation, w, probability, numSimulations, team);
+
+            simulationRepository.save(resultOfSimulation);
         }
 
         return probabilities;

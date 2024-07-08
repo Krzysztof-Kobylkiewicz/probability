@@ -2,7 +2,6 @@ package com.tournament.probability.ranking;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.tournament.probability.team.Team;
-import jakarta.annotation.Nullable;
 import jakarta.persistence.*;
 
 import java.sql.Date;
@@ -20,7 +19,6 @@ public class Ranking {
 
     private Float averageAge;
 
-    @Nullable
     private Float teamValue;
 
     private Integer numberOfPlayers;
@@ -79,12 +77,12 @@ public class Ranking {
         this.averageAge = averageAge;
     }
 
-    @Nullable
+
     public Float getTeamValue() {
         return teamValue;
     }
 
-    public void setTeamValue(@Nullable Float teamValue) {
+    public void setTeamValue(Float teamValue) {
         this.teamValue = teamValue;
     }
 

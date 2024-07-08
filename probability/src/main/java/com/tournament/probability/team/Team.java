@@ -28,11 +28,9 @@ public class Team {
     private String email;
 
     @OneToMany(mappedBy = "hostId")
-    //@JoinColumn(name = "host_id", referencedColumnName = "team_id")//nullable = false)
     private List<Match> matches;
 
     @OneToMany(mappedBy = "awayId")
-    //@JoinColumn(name = "away_id", referencedColumnName = "team_id")//, nullable = false)
     private List<Match> matches1;
 
     @OneToMany(mappedBy = "teamId")
