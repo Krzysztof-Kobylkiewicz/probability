@@ -14,15 +14,18 @@ public class TeamService {
     TeamService(TeamRepository teamRepository){
         this.teamRepository = teamRepository;
     }
+
     List<Team> getAllTeams(){
         return teamRepository.findAll();
     }
+
     Optional<Team> getTeamByName(String name){
         Optional<Team> optionalTeam = teamRepository.findTeamByName(name);
         if(optionalTeam.isEmpty()){
             throw new ApiRequestException("Team '" + name + "' does not exist.");
+        } else {
+            return optionalTeam;
         }
-        return teamRepository.findTeamByName(name);
     }
     Team addTeam(Team team){
         Optional<Team> teamOptional = teamRepository.findTeamByName(team.getName());

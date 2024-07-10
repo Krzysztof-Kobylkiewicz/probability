@@ -36,32 +36,12 @@ public class Team {
     @OneToMany(mappedBy = "teamId")
     private List<Ranking> rankings;
 
-    Team(String name, String owner, String email, List<Match> matches, List<Match> matches1) {
+    public Team(String name, String owner, String email) {
         this.name = name;
         this.owner = owner;
         this.email = email;
     }
 
-    Team(int id, String name, String owner, String email) {
-        this.id = id;
-        this.name = name;
-        this.owner = owner;
-        this.email = email;
-    }
-
-    Team(String name, String owner, String email, List<Match> matches) {
-        this.name = name;
-        this.owner = owner;
-        this.email = email;
-//        this.matches = matches;
-    }
-    Team(String name, String owner, String email, List<Match> matches, List<Match> matches1, List<Ranking> rankings) {
-        this.name = name;
-        this.owner = owner;
-    }
-    Team(String name, String owner, List<Ranking> rankings) {
-        this.name = name;
-    }
     public Team(){
     }
 

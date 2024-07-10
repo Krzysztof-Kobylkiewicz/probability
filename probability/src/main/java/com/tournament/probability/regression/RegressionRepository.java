@@ -75,11 +75,8 @@ public interface RegressionRepository extends JpaRepository<Match, Integer> {
     List<MatchRankingDTO> findDataToModelAboutSpecificTeam(int id);
 
     @Query("SELECT new com.tournament.probability.regression.logistic.MatchAvgDataDTO(" +
-            /*" avg(m.hostTeamGoals) as hostTeamGoals, avg(m.awayTeamGoals) as awayTeamGoals, " +*/
             " avg(m.hostAttemptsOnTarget) as hostAttemptsOnTarget, avg(m.awayAttemptsOnTarget) as awayAttemptsOnTarget, avg(m.hostAttemptsOffTarget) as hostAttemptsOffTarget, avg(m.awayAttemptsOffTarget) as awayAttemptsOffTarget, " +
             " avg(m.hostParaden) as hostParaden, avg(m.awayParaden) as awayParaden, avg(m.hostCorners) as hostCorners, avg(m.awayCorners) as awayCorners, avg(m.hostFreeKicks) as hostFreeKicks, avg(m.awayFreeKicks) as awayFreeKicks, avg(m.hostFouls) as hostFouls, avg(m.awayFouls) as awayFouls, avg(m.hostOffsides) as hostOffsides, avg(m.awayOffsides) as awayOffsides " +
-//            " avg(hr.points) as hostPoints, avg(hr.position) as hostPosition, " +
-//            " avg(ar.points) as awayPoints, avg(ar.position) as awayPosition " +
             " ) " +
             " FROM Match m" +
             " LEFT JOIN m.tournamentId tou" +

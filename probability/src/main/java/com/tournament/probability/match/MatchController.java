@@ -18,7 +18,7 @@ public class MatchController {
     }
     @PostMapping(path = "/add")
     public ResponseEntity<Match> addMatchMethod(@RequestBody Match match){
-        Match createdMatch = matchService.addMatchMethod(match);
+        Match createdMatch = matchService.createMatch(match);
         return new ResponseEntity<>(createdMatch, HttpStatus.CREATED);
     }
     @GetMapping(path = "/get/{id}")

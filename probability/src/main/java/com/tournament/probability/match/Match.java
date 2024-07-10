@@ -72,8 +72,7 @@ public class Match {
         this.awayId = awayId;
     }
 
-    public Match(long id, int hostTeamGoals, int awayTeamGoals, Integer winnerId, Team hostId, Team awayId, Integer hostAttemptsOnTarget, Integer awayAttemptsOnTarget, Integer hostAttemptsOffTarget, Integer awayAttemptsOffTarget, Integer hostParaden, Integer awayParaden, Integer hostCorners, Integer awayCorners, Integer hostFreeKicks, Integer awayFreeKicks, Integer hostFouls, Integer awayFouls, Integer hostOffsides, Integer awayOffsides, Tournament tournamentId) {
-        this.id = id;
+    public Match(int hostTeamGoals, int awayTeamGoals, Integer winnerId, Team hostId, Team awayId, Integer hostAttemptsOnTarget, Integer awayAttemptsOnTarget, Integer hostAttemptsOffTarget, Integer awayAttemptsOffTarget, Integer hostParaden, Integer awayParaden, Integer hostCorners, Integer awayCorners, Integer hostFreeKicks, Integer awayFreeKicks, Integer hostFouls, Integer awayFouls, Integer hostOffsides, Integer awayOffsides, Tournament tournamentId) {
         this.hostTeamGoals = hostTeamGoals;
         this.awayTeamGoals = awayTeamGoals;
         this.winnerId = winnerId;
@@ -271,4 +270,30 @@ public class Match {
         this.tournamentId = tournamentId;
     }
 
+    @Override
+    public String toString() {
+        return "Match{" +
+                "id=" + id +
+                ", hostTeamGoals=" + hostTeamGoals +
+                ", awayTeamGoals=" + awayTeamGoals +
+                ", winnerId=" + winnerId +
+                ", hostId=" + hostId +
+                ", awayId=" + awayId +
+                ", hostAttemptsOnTarget=" + hostAttemptsOnTarget +
+                ", awayAttemptsOnTarget=" + awayAttemptsOnTarget +
+                ", hostAttemptsOffTarget=" + hostAttemptsOffTarget +
+                ", awayAttemptsOffTarget=" + awayAttemptsOffTarget +
+                ", hostParaden=" + hostParaden +
+                ", awayParaden=" + awayParaden +
+                ", hostCorners=" + hostCorners +
+                ", awayCorners=" + awayCorners +
+                ", hostFreeKicks=" + hostFreeKicks +
+                ", awayFreeKicks=" + awayFreeKicks +
+                ", hostFouls=" + hostFouls +
+                ", awayFouls=" + awayFouls +
+                ", hostOffsides=" + hostOffsides +
+                ", awayOffsides=" + awayOffsides +
+                ", tournamentId=" + tournamentId +
+                '}';
+    }
 }

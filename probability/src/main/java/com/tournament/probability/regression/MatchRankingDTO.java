@@ -1,6 +1,9 @@
 package com.tournament.probability.regression;
 
+import org.springframework.cglib.core.Local;
+
 import java.sql.Date;
+import java.time.LocalDate;
 
 public class MatchRankingDTO{
         private Integer hostTeamGoals;
@@ -26,14 +29,14 @@ public class MatchRankingDTO{
         private String hostConfederation;
         private Integer hostPoints;
         private Integer hostPosition;
-        private Date hostRankingDate;
+        private LocalDate hostRankingDate;
         private Float awayAverageAge;
         private Float awayTeamValue;
         private Integer awayNumberOfPlayers;
         private String awayConfederation;
         private Integer awayPoints;
         private Integer awayPosition;
-        private Date awayRankingDate;
+        private LocalDate awayRankingDate;
         private Integer id;
         private String name;
         private int hostId;
@@ -49,9 +52,9 @@ public class MatchRankingDTO{
                 Integer hostFouls, Integer awayFouls, Integer hostOffsides,
                 Integer awayOffsides, Float hostAverageAge, Float hostTeamValue,
                 Integer hostNumberOfPlayers, String hostConfederation, Integer hostPoints,
-                Integer hostPosition, Date hostRankingDate, Float awayAverageAge,
+                Integer hostPosition, LocalDate hostRankingDate, Float awayAverageAge,
                 Float awayTeamValue, Integer awayNumberOfPlayers, String awayConfederation,
-                Integer awayPoints, Integer awayPosition, Date awayRankingDate,
+                Integer awayPoints, Integer awayPosition, LocalDate awayRankingDate,
                 Integer id, String name, int hostId, int awayId
         ) {
             this.hostTeamGoals = hostTeamGoals;
@@ -279,11 +282,11 @@ public class MatchRankingDTO{
         this.hostPosition = hostPosition;
     }
 
-    public Date getHostRankingDate() {
+    public LocalDate getHostRankingDate() {
         return hostRankingDate;
     }
 
-    public void setHostRankingDate(Date hostRankingDate) {
+    public void setHostRankingDate(LocalDate hostRankingDate) {
         this.hostRankingDate = hostRankingDate;
     }
 
@@ -335,11 +338,11 @@ public class MatchRankingDTO{
         this.awayPosition = awayPosition;
     }
 
-    public Date getAwayRankingDate() {
+    public LocalDate getAwayRankingDate() {
         return awayRankingDate;
     }
 
-    public void setAwayRankingDate(Date awayRankingDate) {
+    public void setAwayRankingDate(LocalDate awayRankingDate) {
         this.awayRankingDate = awayRankingDate;
     }
 

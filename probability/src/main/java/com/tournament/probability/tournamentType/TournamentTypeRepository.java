@@ -17,6 +17,4 @@ interface TournamentTypeRepository extends JpaRepository<TournamentType, Integer
 
     void deleteTournamentTypeById(int id);
 
-//    TournamentType updateTournamentTypeById(char tournamentType, String ttDescription,
-//                                            int minTeams, int maxTeams, int id);
 }

@@ -18,9 +18,9 @@ public class TournamentTypeController {
         this.tournamentTypeService = tournamentTypeService;
     }
     @GetMapping(path = "/get/{id}")
-    public ResponseEntity<Optional<TournamentType>> getTournamentTypeByIdMethod(@PathVariable("id") int id){
-        Optional<TournamentType> newOptionalTournamentType = tournamentTypeService.getTournamentTypeByIdMethod(id);
-        return new ResponseEntity<>(newOptionalTournamentType, HttpStatus.OK);
+    public ResponseEntity<TournamentType> getTournamentTypeByIdMethod(@PathVariable("id") int id){
+        TournamentType newTournamentType = tournamentTypeService.getTournamentTypeById(id);
+        return new ResponseEntity<>(newTournamentType, HttpStatus.OK);
     }
     @PostMapping(path = "/add")
     public ResponseEntity<TournamentType> AddTournamentTypeMethod(

@@ -13,7 +13,7 @@ public class MatchService {
     MatchService(MatchRepository matchRepository){
         this.matchRepository = matchRepository;
     }
-    Match addMatchMethod(Match match){
+    Match createMatch(Match match){
         matchRepository.save(match);
         return match;
     }

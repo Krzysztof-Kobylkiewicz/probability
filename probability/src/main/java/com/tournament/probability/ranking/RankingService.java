@@ -12,6 +12,7 @@ public class RankingService {
         this.rankingRepository = rankingRepository;
     }
     Ranking addRanking(Ranking ranking){
+
         return rankingRepository.save(ranking);
     }
 }

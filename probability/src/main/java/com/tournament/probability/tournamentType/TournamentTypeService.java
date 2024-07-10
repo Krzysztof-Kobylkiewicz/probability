@@ -14,16 +14,22 @@ public class TournamentTypeService {
     TournamentTypeService(TournamentTypeRepository tournamentTypeRepository){
         this.tournamentTypeRepository = tournamentTypeRepository;
     }
-    Optional<TournamentType> getTournamentTypeByIdMethod(int id) {
+    TournamentType getTournamentTypeById(int id) {
+
         Optional<TournamentType> TournamentTypeOptional =
                 tournamentTypeRepository.findTournamentTypeById(id);
+
         if (TournamentTypeOptional.isPresent()){
-            return tournamentTypeRepository.findTournamentTypeById(id);
+
+            return TournamentTypeOptional.get();
+
         } throw new ApiRequestException("A tournament type of id: " + id + " does not exist.");
 
     }
     TournamentType addTournamentType(TournamentType tournamentType){
+
         Optional<TournamentType> optionalTournamentType = tournamentTypeRepository.findByType(tournamentType.getTournamentType());
+
         if (optionalTournamentType.isPresent()){
             throw new IllegalStateException("Tournament Type '" + tournamentType.getTournamentType()+ "' already exists.");
         }

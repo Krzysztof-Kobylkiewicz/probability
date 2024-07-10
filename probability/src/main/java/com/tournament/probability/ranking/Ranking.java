@@ -5,6 +5,7 @@ import com.tournament.probability.team.Team;
 import jakarta.persistence.*;
 
 import java.sql.Date;
+import java.time.LocalDate;
 
 @Entity
 @Table
@@ -30,10 +31,10 @@ public class Ranking {
     private Integer position;
 
     @JsonFormat(pattern = "yyyy-MM-dd")
-    private Date rankingDate;
+    private LocalDate rankingDate;
 
     public Ranking (Float averageAge, Float teamValue, Integer numberOfPlayers, String confederation,
-                    Integer points, Integer position, Date rankingDate){
+                    Integer points, Integer position, LocalDate rankingDate, Team teamId){
         this.averageAge = averageAge;
         this.teamValue = teamValue;
         this.numberOfPlayers = numberOfPlayers;
@@ -41,6 +42,16 @@ public class Ranking {
         this.points = points;
         this.position = position;
         this.rankingDate = rankingDate;
+        this.teamId = teamId;
+    }
+
+    public Ranking(Float averageAge, Float teamValue, Integer numberOfPlayers, String confederation, Integer points, Integer position) {
+        this.averageAge = averageAge;
+        this.teamValue = teamValue;
+        this.numberOfPlayers = numberOfPlayers;
+        this.confederation = confederation;
+        this.points = points;
+        this.position = position;
     }
 
     public Ranking(String confederation, Integer points, Integer position) {
@@ -124,11 +135,11 @@ public class Ranking {
         this.position = position;
     }
 
-    public Date getRankingDate() {
+    public LocalDate getRankingDate() {
         return rankingDate;
     }
 
-    public void setRankingDate(Date rankingDate) {
+    public void setRankingDate(LocalDate rankingDate) {
         this.rankingDate = rankingDate;
     }
 

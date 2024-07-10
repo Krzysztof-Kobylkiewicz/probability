@@ -35,9 +35,8 @@ public class Tournament {
     @ManyToOne(cascade = CascadeType.MERGE)
     private TournamentType tournamentTypeId;
 
-    public Tournament(int id, String name, Integer teamsParticipating,
+    public Tournament(String name, Integer teamsParticipating,
                       Date startDate, Date endDate, String winner) {
-        this.id = id;
         this.name = name;
         this.teamsParticipating = teamsParticipating;
         this.startDate = startDate;
@@ -48,10 +47,10 @@ public class Tournament {
     public Tournament() {
     }
 
-    public Tournament(int id, String name, int teamsParticipating) {
-        this.id = id;
+    public Tournament(String name, int teamsParticipating, String winner) {
         this.name = name;
         this.teamsParticipating = teamsParticipating;
+        this.winner = winner;
     }
 
     public int getId() {
@@ -116,5 +115,19 @@ public class Tournament {
 
     public void setTournamentTypeId(TournamentType tournamentTypeId) {
         this.tournamentTypeId = tournamentTypeId;
+    }
+
+    @Override
+    public String toString() {
+        return "Tournament{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", teamsParticipating=" + teamsParticipating +
+                ", startDate=" + startDate +
+                ", endDate=" + endDate +
+                ", winner='" + winner + '\'' +
+                ", matches=" + matches +
+                ", tournamentTypeId=" + tournamentTypeId +
+                '}';
     }
 }
