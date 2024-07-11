@@ -11,4 +11,8 @@ public interface TournamentRepository extends JpaRepository<Tournament, Integer>
 
     @Query("SELECT t FROM Tournament t WHERE t.name = ?1")
     Optional<Tournament> findByName(String name);
+
+    Optional<Tournament> findTournamentById(int id);
+
+    void deleteTournamentById(int id);
 }

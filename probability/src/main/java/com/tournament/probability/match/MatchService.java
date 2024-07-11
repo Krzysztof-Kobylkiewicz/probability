@@ -39,12 +39,11 @@ public class MatchService {
         return match;
     };
 
-    Match deleteMatch(int id){
+    void deleteMatch(int id){
 
         Match matchToDelete = matchRepository.findById(id)
                 .orElseThrow(() -> new IllegalStateException("Match with id '" + id + "' does not exist."));
 
         matchRepository.deleteMatchById(id);
-        return matchToDelete;
     }
 }

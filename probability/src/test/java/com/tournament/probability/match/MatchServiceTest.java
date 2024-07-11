@@ -67,9 +67,8 @@ class MatchServiceTest {
     @Test
     void itShouldDeleteMatchAndReturnIt(){
         when(matchRepository.findById(anyInt())).thenReturn(Optional.of(mockMatch));
-        Match result = matchService.deleteMatch(anyInt());
+        matchService.deleteMatch(anyInt());
 
         verify(matchRepository).deleteMatchById(anyInt());
-        assertEquals(mockMatch, result);
     }
 }

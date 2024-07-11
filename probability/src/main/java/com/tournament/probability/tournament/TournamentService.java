@@ -20,4 +20,30 @@ public class TournamentService {
         }
         return tournamentRepository.save(tournament);
     }
+
+    Tournament updateTournamentById(int id, Tournament tournament){
+
+        Tournament tournamentToUpdate = tournamentRepository.findTournamentById(id)
+                .orElseThrow(() -> new IllegalStateException("Tournament with id '" + id + "' does not exist."));
+
+        tournamentToUpdate.setId(tournament.getId());
+        tournamentToUpdate.setName(tournament.getName());
+        tournamentToUpdate.setStartDate(tournament.getStartDate());
+        tournamentToUpdate.setEndDate(tournament.getEndDate());
+        tournamentToUpdate.setTeamsParticipating(tournament.getTeamsParticipating());
+        tournamentToUpdate.setWinner(tournament.getWinner());
+
+        tournamentRepository.save(tournamentToUpdate);
+        return tournamentToUpdate;
+    }
+
+    Tournament getTournamentById(int id){
+
+        return tournamentRepository.findTournamentById(id)
+                .orElseThrow(() -> new IllegalStateException("Tournament with id '" + id + "' does not exist."));
+    }
+
+    void deleteTournamentById(int id){
+        tournamentRepository.deleteTournamentById(id);
+    }
 }

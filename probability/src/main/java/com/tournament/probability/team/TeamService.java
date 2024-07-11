@@ -34,6 +34,21 @@ public class TeamService {
         }
         return teamRepository.save(team);
     }
+
+    Team updateTeamById(int id, Team team){
+
+        Team teamToUpdate = teamRepository.findTeamById(id)
+                .orElseThrow(() -> new IllegalStateException("Team with id '" + id + "' does not exist."));
+
+        teamToUpdate.setId(team.getId());
+        teamToUpdate.setName(team.getName());
+        teamToUpdate.setEmail(team.getEmail());
+        teamToUpdate.setOwner(team.getOwner());
+
+        teamRepository.save(teamToUpdate);
+        return teamToUpdate;
+    }
+
     void deleteTeamById(int id){
         teamRepository.deleteTeamById(id);
     }

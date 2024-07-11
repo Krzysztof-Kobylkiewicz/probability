@@ -88,4 +88,16 @@ class TeamServiceTest {
 
         verify(teamRepository, times(1)).deleteTeamById(mockTeam1.getId());
     }
+
+    @Test
+    void itShouldUpdateTeamByItsIdAndReturnIt(){
+        when(teamRepository.findTeamById(mockTeam1.getId())).thenReturn(Optional.of(mockTeam1));
+        when(teamRepository.save(any(Team.class))).thenReturn(mockTeam1);
+
+        Team result = teamService.updateTeamById(mockTeam1.getId(), mockTeam1);
+
+        verify(teamRepository, times(1)).save(mockTeam1);
+        verify(teamRepository).findTeamById(mockTeam1.getId());
+        assertEquals(mockTeam1, result);
+    }
 }

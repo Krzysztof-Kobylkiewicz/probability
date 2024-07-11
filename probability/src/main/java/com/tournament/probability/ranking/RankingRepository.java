@@ -11,4 +11,8 @@ import java.util.Optional;
 @Repository
 public interface RankingRepository extends JpaRepository<Ranking, Long> {
 
+    @Query("SELECT r FROM Ranking r WHERE r.id = ?1")
+    Optional<Ranking> findRankingById(int id);
+
+    void deleteRankingById(int id);
 }
