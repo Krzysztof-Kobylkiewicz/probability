@@ -31,6 +31,9 @@ The aim of this project is to estimate the winner of the EURO 2024 with a given 
 
 - http://localhost:8080/api/v1/regression/predict/euro2024/1000 is going to train logistic regression model, simulate EURO 2024 1000 times and save results to database. It returned following probabilities: France: 30.8%, Portugal: 27.6%, England: 15.3%, Holand: 7.4%, Belgium: 6%, Croatia: 5.1%, Switzerland 2.6%, Spain: 2.5%, Italy 1.3%, Germany 0.7%, Denmark: 0.4%, Poland: 0.2%, Slovakia: 0.1%.
 
+# Database schema:
+![database_schema](https://github.com/Krzysztof-Kobylkiewicz/probability/assets/175056724/aac2469e-ef9f-4c0b-9151-43cf53a05052)
+
 # Project status
 Simulation of EURO 2024 is fully implemented. In the future project can be :
 
