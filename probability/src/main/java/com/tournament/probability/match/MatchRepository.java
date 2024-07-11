@@ -10,4 +10,6 @@ public interface MatchRepository extends JpaRepository<Match, Long> {
     @Query("SELECT m FROM Match m WHERE m.id = ?1")
     Optional<Match> findById (int id);
 
+    void deleteMatchById(int id);
+
 }

@@ -13,14 +13,18 @@ public class MatchService {
     MatchService(MatchRepository matchRepository){
         this.matchRepository = matchRepository;
     }
+
     Match createMatch(Match match){
         matchRepository.save(match);
         return match;
     }
-    Optional<Match> getMatchById(int id){
 
-        return matchRepository.findById(id);
+    Match getMatchById(int id){
+
+        return matchRepository.findById(id)
+                .orElseThrow(() -> new IllegalStateException("Match with id '" + id + "' does not exist."));
     }
+
     Match updateMatch(int id, Match match){
         Match updatedMatch = matchRepository.findById(id)
                 .orElseThrow(() -> new IllegalStateException("Match with id '" + id + "' does not exist."));
@@ -34,4 +38,13 @@ public class MatchService {
 
         return match;
     };
+
+    Match deleteMatch(int id){
+
+        Match matchToDelete = matchRepository.findById(id)
+                .orElseThrow(() -> new IllegalStateException("Match with id '" + id + "' does not exist."));
+
+        matchRepository.deleteMatchById(id);
+        return matchToDelete;
+    }
 }

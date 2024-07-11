@@ -46,10 +46,10 @@ class MatchServiceTest {
     @Test
     void itShouldGetMatchById(){
         when(matchRepository.findById(anyInt())).thenReturn(Optional.of(mockMatch));
-        Optional<Match> result = matchService.getMatchById(1);
+        Match result = matchService.getMatchById(1);
 
         verify(matchRepository).findById(1);
-        assertEquals(Optional.of(mockMatch), result);
+        assertEquals(mockMatch, result);
 
     }
 
@@ -61,6 +61,15 @@ class MatchServiceTest {
 
         verify(matchRepository).findById(1);
         verify(matchRepository, times(2)).save(mockMatch);
+        assertEquals(mockMatch, result);
+    }
+
+    @Test
+    void itShouldDeleteMatchAndReturnIt(){
+        when(matchRepository.findById(anyInt())).thenReturn(Optional.of(mockMatch));
+        Match result = matchService.deleteMatch(anyInt());
+
+        verify(matchRepository).deleteMatchById(anyInt());
         assertEquals(mockMatch, result);
     }
 }
