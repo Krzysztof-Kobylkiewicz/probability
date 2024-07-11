@@ -2,7 +2,7 @@
 CRUD application created with Spring Boot and PostgreSQL.
 
 # Introduction
-The aim of this project is to estimate the winner of the EURO 2024 with a given probability. A logistic regression model was build based on team's previous major tournament results and its position in FIFA Ranking. Then every match outcome is predicted by estimated model. The whole tournament is simulated n times. Based on that the probability od winning is calculated.
+The aim of this project is to estimate the winner of the EURO 2024 with a given probability. A logistic regression model was build based on team's previous major tournament results and its position in FIFA Ranking. Then every match outcome is predicted by estimated model. The whole tournament is simulated n times. Based on that the probability of winning is calculated.
 
 # Technologies
 - Java 20
