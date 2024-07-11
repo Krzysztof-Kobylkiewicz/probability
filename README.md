@@ -1,4 +1,4 @@
-# CRUD Backend Application predicting EURO 2024 winner
+# Java CRUD Backend Application predicting EURO 2024 winner
 CRUD application created with Spring Boot and PostgreSQL.
 
 # Introduction
