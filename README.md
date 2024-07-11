@@ -15,6 +15,7 @@ The aim of this project is to estimate the winner of the EURO 2024 with a given 
 - Python 3.11.6
 - Requests 2.31.0
 - BeautifulSoup 4.12.3
+- Postman 10.24.16
 - IntelliJ IDEA Community Edition 2023.2.2
 - PyCharm Edu 2022.2.2
 
