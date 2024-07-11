@@ -1,4 +1,4 @@
-# CRUD Application predicting EURO 2024 winner
+# CRUD Backend Application predicting EURO 2024 winner
 CRUD application created with Spring Boot and PostgreSQL.
 
 # Introduction
@@ -35,3 +35,4 @@ Simulation of EURO 2024 is fully implemented. In the future project can be :
 
 - extended with possibility of simulating other major tournaments.
 - updated with better version of model. Currently model uses pravious match statistics and FIFA Ranking Data but can be extended by new variables or by weighting tournament statistics from the most recent to the oldest.
+- update with funcionality thath allows users to create their own tournaments and predict its winners.
